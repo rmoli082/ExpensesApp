@@ -1,6 +1,7 @@
 import { LightningElement, wire } from 'lwc';
-import {subscribe, MessageContext} from 'lightning/messageService';
+import {subscribe, publish, MessageContext} from 'lightning/messageService';
 import EMPLOYEE_SELECTED_CHANNEL from '@salesforce/messageChannel/Employee_Selected__c';
+import REPORT_SELECTED_CHANNEL from '@salesforce/messageChannel/Report_Selected__c';
 import getExpenseReports from '@salesforce/apex/ExpensesController.getExpenseReports';
 
 export default class ExpenseReportPanel extends LightningElement {
@@ -21,7 +22,8 @@ export default class ExpenseReportPanel extends LightningElement {
         getExpenseReports({employeeId: message.employeeId})
             .then(results => {this.reports = results;})
             .catch(error => {this.error = error;});
-        console.log('Received: ' + message.employeeId);
+
+        publish(this.messageContext, REPORT_SELECTED_CHANNEL, {reportId: '0'});
     }
 
     connectedCallback() {

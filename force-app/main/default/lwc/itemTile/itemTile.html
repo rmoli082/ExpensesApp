@@ -1,5 +1,5 @@
 <template>
-	<lightning-card title={report.Name} class="report-tile">
+	<lightning-card title={expense.Name} class="item-tile">
         <div slot="actions">
             <lightning-button-icon
                 icon-name="utility:search"
@@ -11,9 +11,9 @@
 		<div class="slds-var-p-horizontal_small">
 			<div class="slds-media">
 				<div class="slds-media__body">
-					<p class="slds-var-m-bottom_xxx-small info">Date: {report.Report_Date__c}</p>
-					<p class="slds-var-m-bottom_xxx-small info">Expense Items: {report.Number_of_Expense_Items__c}</p>
-					<p class="slds-var-m-bottom_xxx-small info">Total Amount: ${report.Total_Amount_of_Expenses__c}</p>
+					<p class="slds-var-m-bottom_xxx-small info">Category: {expense.Category__c}</p>
+					<p class="slds-var-m-bottom_xxx-small info">Vendor: {expense.Vendor__c}</p>
+					<p class="slds-var-m-bottom_xxx-small info">Amount: ${expense.Amount__c}</p>
 				</div>
 			</div>
 		</div>

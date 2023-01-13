@@ -1,0 +1,14 @@
+.item-a {
+    grid-area: main;
+}
+
+.item-b {
+    grid-area: sidebar;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [first] 60% [line2] 40% [end];
+    grid-template-rows: auto;
+    grid-template-areas:"main sidebar"
+}

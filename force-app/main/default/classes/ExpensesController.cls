@@ -35,9 +35,16 @@ public with sharing class ExpensesController {
     }
 
     @AuraEnabled
-    public static List<Expense_Item__c> getExpenseItems(){
+    public static Expense_Item__c[] getExpenseItems(String reportId){
         try {
-           return null;
+           return [
+            SELECT Name, Category__c,
+                Vendor__c, Amount__c
+            FROM Expense_Item__c
+            WHERE Expense_Report__r.Id = :reportId
+            WITH SECURITY_ENFORCED
+            ORDER BY NAME
+        ];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

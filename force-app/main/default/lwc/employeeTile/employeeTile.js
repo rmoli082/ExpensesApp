@@ -9,7 +9,6 @@ export default class EmployeeTile extends LightningElement {
 
     handleEmployeeClick() {
         const payload = {employeeId: this.employee.Id};
-        console.log('PUblished: ' + this.employee.Id);
         publish(this.messageContext, EMPLOYEE_SELECTED_CHANNEL, payload);
         
     }
