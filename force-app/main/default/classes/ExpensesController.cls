@@ -22,7 +22,9 @@ public with sharing class ExpensesController {
     public static Employee__c[] getEmployeeList(){
         try {
             return [
-                SELECT Id, Name, Employee_Name__c
+                SELECT Id, Name, Employee_Name__c,
+                Number_of_Expense_Reports__c,
+                Total_Expenses__c
                 FROM Employee__c
                 WITH SECURITY_ENFORCED
                 ORDER BY Name

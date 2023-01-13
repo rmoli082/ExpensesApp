@@ -1,5 +1,5 @@
 <template>
-	<lightning-card title={employee.Employee_Name__c}>
+	<lightning-card title={employee.Employee_Name__c} class="employee-tile">
         <div slot="actions">
             <lightning-button-icon
                 icon-name="utility:search"
@@ -11,7 +11,9 @@
 		<div class="slds-var-p-horizontal_small">
 			<div class="slds-media">
 				<div class="slds-media__body">
-					<p class="slds-var-m-bottom_xx-small">Employee Id: {employee.Name}</p>
+					<p class="slds-var-m-bottom_xxx-small info">Employee Id: {employee.Name}</p>
+					<p class="slds-var-m-bottom_xxx-small info"># of Expense Reports: {employee.Number_of_Expense_Reports__c}</p>
+					<p class="slds-var-m-bottom_xxx-small info">Total Expenses: ${employee.Total_Expenses__c}</p>
 				</div>
 			</div>
 		</div>

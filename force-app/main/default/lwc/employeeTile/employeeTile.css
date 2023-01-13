@@ -1,0 +1,16 @@
+:host {
+	--sds-c-card-color-background: linear-gradient(180deg, rgba(255,255,255,1) 80%, #cbcbd4 100%);
+}
+
+.employee-tile {
+    display: block;
+    border: var(--lwc-borderWidthThin, 2px) solid #0d2c54;
+    border-radius: .25rem;
+    background-color: #cbcbd4;
+    color: #4e3822;
+}
+
+.info {
+    font-size: 0.875em;
+    color: #594f3b
+}
