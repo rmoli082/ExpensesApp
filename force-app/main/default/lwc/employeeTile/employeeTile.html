@@ -1,0 +1,19 @@
+<template>
+	<lightning-card title={employee.Employee_Name__c}>
+        <div slot="actions">
+            <lightning-button-icon
+                icon-name="utility:search"
+                variant="bare"
+                alternative-text="Open record"
+                onclick={handleEmployeeClick}>
+            </lightning-button-icon>
+        </div>
+		<div class="slds-var-p-horizontal_small">
+			<div class="slds-media">
+				<div class="slds-media__body">
+					<p class="slds-var-m-bottom_xx-small">Employee Id: {employee.Name}</p>
+				</div>
+			</div>
+		</div>
+	</lightning-card>
+</template>

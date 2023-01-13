@@ -1,0 +1,26 @@
+<template>
+	<lightning-card title="Expense Reports" icon-name="utility:animal_and_nature">
+		<div class="slds-card__body slds-card__body_inner">
+			<!-- Start bear list -->
+			<template if:true={reports}>
+				<lightning-layout multiple-rows="true" pull-to-boundary="small">
+					<template for:each={reports} for:item="report">
+						<lightning-layout-item key={report.Id} size="3" class="slds-var-p-around_x-small">
+							<c-report-tile report={report}></c-report-tile>
+						</lightning-layout-item>
+					</template>
+				</lightning-layout>
+			</template>
+			<template if:false={reports}>
+				<p>Nothing to display...</p>
+			</template>
+			<!-- End bear list -->
+			<!-- Data failed to load -->
+			<template if:true={error}>
+				<div class="slds-text-color_error">
+					An error occurred while loading the expense report list: {error.body.message}
+				</div>
+			</template>
+		</div>
+	</lightning-card>
+</template>

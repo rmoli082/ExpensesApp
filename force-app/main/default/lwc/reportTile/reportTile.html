@@ -1,0 +1,21 @@
+<template>
+	<lightning-card title={report.Name}>
+        <div slot="actions">
+            <lightning-button-icon
+                icon-name="utility:search"
+                variant="bare"
+                alternative-text="Open record"
+                onclick={handleReportClick}>
+            </lightning-button-icon>
+        </div>
+		<div class="slds-var-p-horizontal_small">
+			<div class="slds-media">
+				<div class="slds-media__body">
+					<p class="slds-var-m-bottom_xx-small">Date: {report.Report_Date__c}</p>
+					<p class="slds-var-m-bottom_xx-small">Expense Items: {report.Number_of_Expense_Items__c}</p>
+					<p class="slds-var-m-bottom_xx-small">Total Amount: {report.Total_Amount_of_Expenses__c}</p>
+				</div>
+			</div>
+		</div>
+	</lightning-card>
+</template>

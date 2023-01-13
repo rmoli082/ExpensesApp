@@ -1,0 +1,23 @@
+<template>
+	<lightning-card title="Employees" icon-name="utility:animal_and_nature">
+		<div class="slds-card__body slds-card__body_inner">
+			<!-- Start employee list -->
+			<template if:true={employees}>
+				<lightning-layout multiple-rows="true" pull-to-boundary="small">
+					<template for:each={employees} for:item="employee">
+						<lightning-layout-item key={employee.Id} size="3" class="slds-var-p-around_x-small">
+							<c-employee-tile employee={employee}></c-employee-tile>             
+						</lightning-layout-item>
+					</template>
+				</lightning-layout>
+			</template>
+			<!-- End employee list -->
+			<!-- Data failed to load -->
+			<template if:true={error}>
+				<div class="slds-text-color_error">
+					An error occurred while loading the employee list: {error.body.message}
+				</div>
+			</template>
+		</div>
+	</lightning-card>
+</template>
