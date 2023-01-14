@@ -6,7 +6,7 @@
 				<lightning-layout multiple-rows="true" pull-to-boundary="small">
 					<template for:each={employees} for:item="employee">
 						<lightning-layout-item key={employee.Id} size="3" class="slds-var-p-around_x-small">
-							<c-employee-tile employee={employee}></c-employee-tile>             
+							<c-employee-tile employee={employee} onopenemployee={handleOpenEmployee}></c-employee-tile>             
 						</lightning-layout-item>
 					</template>
 				</lightning-layout>

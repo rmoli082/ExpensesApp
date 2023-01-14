@@ -4,9 +4,15 @@
             <lightning-button-icon
                 icon-name="utility:search"
                 variant="bare"
-                alternative-text="Open record"
-                onclick={handleEmployeeClick}>
+                alternative-text="View record"
+                onclick={handleEmployeeView}>
             </lightning-button-icon>
+			<lightning-button-icon
+						icon-name="utility:open"
+						variant="bare"
+						alternative-text="Open record"
+						onclick={handleEmployeeOpen}>Open
+					</lightning-button-icon>
         </div>
 		<div class="slds-var-p-horizontal_small">
 			<div class="slds-media">

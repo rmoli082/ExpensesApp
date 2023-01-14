@@ -7,9 +7,14 @@ export default class EmployeeTile extends LightningElement {
 
     @wire(MessageContext) messageContext;
 
-    handleEmployeeClick() {
+    handleEmployeeView() {
         const payload = {employeeId: this.employee.Id};
-        publish(this.messageContext, EMPLOYEE_SELECTED_CHANNEL, payload);
-        
+        publish(this.messageContext, EMPLOYEE_SELECTED_CHANNEL, payload);       
+    }
+
+    handleEmployeeOpen() {
+        const selectEvent = new CustomEvent('openemployee',
+        {detail: this.employee.Id});
+        this.dispatchEvent(selectEvent);
     }
 }

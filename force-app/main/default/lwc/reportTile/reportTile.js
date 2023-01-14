@@ -7,8 +7,14 @@ export default class ReportTile extends LightningElement {
 
     @wire(MessageContext) messageContext;
 
-    handleReportClick() {
+    handleReportView() {
         const payload = {reportId: this.report.Id};
         publish(this.messageContext, REPORT_SELECTED_CHANNEL, payload);
+    }
+
+    handleReportOpen() {
+        const selectEvent = new CustomEvent('openreport',
+        {detail: this.report.Id});
+        this.dispatchEvent(selectEvent);
     }
 }
