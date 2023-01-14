@@ -1,6 +1,6 @@
 public with sharing class ExpensesController {
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Expense_Report__c[] getExpenseReports(String employeeId){
         try {
             return [
@@ -18,7 +18,7 @@ public with sharing class ExpensesController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static Employee__c[] getEmployeeList(){
         try {
             return [
@@ -34,7 +34,27 @@ public with sharing class ExpensesController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
+    public static Employee__c[] searchEmployees(String searchTerm) {
+        searchTerm = searchTerm.trim();
+        if (searchTerm == '') {
+            return getEmployeeList();
+        }
+
+        searchTerm = '%' + searchTerm + '%';
+
+        return [
+            SELECT Id, Name, Employee_Name__c,
+            Number_of_Expense_Reports__c,
+            Total_Expenses__c
+            FROM Employee__c
+            WHERE Employee_Name__c LIKE :searchTerm
+            WITH SECURITY_ENFORCED
+            ORDER BY Name
+        ];
+    }
+
+    @AuraEnabled(cacheable=true)
     public static Expense_Item__c[] getExpenseItems(String reportId){
         try {
            return [

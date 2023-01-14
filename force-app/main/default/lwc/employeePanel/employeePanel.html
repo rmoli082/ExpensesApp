@@ -2,18 +2,31 @@
 	<lightning-card title="Employees" icon-name="action:user">
 		<div class="slds-card__body slds-card__body_inner">
 			<!-- Start employee list -->
-			<template if:true={employees}>
+			<template if:true={employees.data}>
+				<lightning-input type="search"
+					onchange={handleSearchChange}
+					variant="label-hidden"
+					class="slds-var-m-bottom_small"
+					label="Search"
+					placeholder="Search for employee"
+					value={searchTerm}>
+				</lightning-input>
 				<lightning-layout multiple-rows="true" pull-to-boundary="small">
-					<template for:each={employees} for:item="employee">
+					<template for:each={employees.data} for:item="employee">
 						<lightning-layout-item key={employee.Id} size="3" class="slds-var-p-around_x-small">
 							<c-employee-tile employee={employee} onopenemployee={handleOpenEmployee}></c-employee-tile>             
 						</lightning-layout-item>
 					</template>
 				</lightning-layout>
+				<template if:false={hasResults}>
+					<div class="slds-align_absolute-center slds-var-m-vertical_small">
+						No results found...
+					</div>
+				</template>
 			</template>
 			<!-- End employee list -->
 			<!-- Data failed to load -->
-			<template if:true={error}>
+			<template if:true={employees.error}>
 				<div class="slds-text-color_error">
 					An error occurred while loading the employee list: {error.body.message}
 				</div>
