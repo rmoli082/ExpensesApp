@@ -3,6 +3,17 @@ public with sharing class ExpensesController {
     @AuraEnabled(cacheable=true)
     public static Expense_Report__c[] getExpenseReports(String employeeId){
         try {
+            if (employeeId == '') {
+                return [
+                SELECT Name, 
+                        Report_Date__c, 
+                        Number_of_Expense_Items__c, 
+                        Total_Amount_of_Expenses__c
+                FROM Expense_Report__c
+                WITH SECURITY_ENFORCED
+                ORDER BY NAME
+            ];
+            } else {
             return [
                 SELECT Name, 
                         Report_Date__c, 
@@ -13,6 +24,7 @@ public with sharing class ExpensesController {
                 WITH SECURITY_ENFORCED
                 ORDER BY NAME
             ];
+        }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

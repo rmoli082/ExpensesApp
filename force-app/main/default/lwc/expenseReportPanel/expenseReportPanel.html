@@ -2,21 +2,21 @@
 	<lightning-card title="Expense Reports" icon-name="action:record">
 		<div class="slds-card__body slds-card__body_inner">
 			<!-- Start report list -->
-			<template if:true={reports}>
+			<template if:true={reports.data}>
 				<lightning-layout multiple-rows="true" pull-to-boundary="small">
-					<template for:each={reports} for:item="report">
+					<template for:each={reports.data} for:item="report">
 						<lightning-layout-item key={report.Id} size="3" class="slds-var-p-around_x-small">
 							<c-report-tile report={report} onopenreport={handleReportOpen}></c-report-tile>
 						</lightning-layout-item>
 					</template>
 				</lightning-layout>
 			</template>
-			<template if:false={reports}>
+			<template if:false={reports.data}>
 				<p>Nothing to display...</p>
 			</template>
 			<!-- End bear list -->
 			<!-- Data failed to load -->
-			<template if:true={error}>
+			<template if:true={reports.error}>
 				<div class="slds-text-color_error">
 					An error occurred while loading the expense report list: {error.body.message}
 				</div>

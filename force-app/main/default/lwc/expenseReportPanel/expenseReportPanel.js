@@ -8,10 +8,11 @@ import getExpenseReports from '@salesforce/apex/ExpensesController.getExpenseRep
 export default class ExpenseReportPanel extends NavigationMixin(LightningElement) {
 
     subscription=null;
+    employeeId='';
     reports;
-    error;
 
     @wire(MessageContext) messageContext;
+    @wire(getExpenseReports, { employeeId:'$employeeId'} ) reports;
 
     subscribeToMessageChannel() {
         this.subscription = subscribe(this.messageContext, 
@@ -19,11 +20,7 @@ export default class ExpenseReportPanel extends NavigationMixin(LightningElement
     }
 
     handleEmployeeView(message){
-        
-        getExpenseReports({employeeId: message.employeeId})
-            .then(results => {this.reports = results;})
-            .catch(error => {this.error = error;});
-
+        this.employeeId = message.employeeId;
         publish(this.messageContext, REPORT_SELECTED_CHANNEL, {reportId: '0'});
     }
 
